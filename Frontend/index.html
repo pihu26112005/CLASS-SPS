@@ -8,27 +8,26 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <header>
-            <h1>Smart Parking System</h1>
-        </header>
-        <main>
-            <section id="availability">
-                <h2>Parking Slot Availability</h2>
-                <div id="slots">
-                    <!-- Parking slots will be dynamically populated here -->
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🚗 Smart Parking System</h1>
+                <p class="subtitle">Real-time parking slot management</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-value" id="availableCount">0</div>
+                    <div class="stat-label">Available</div>
                 </div>
-            </section>
-            <section id="reservation">
-                <h2>Reserve a Parking Slot</h2>
-                <form id="reservation-form">
-                    <label for="slot-number">Slot Number:</label>
-                    <input type="number" id="slot-number" name="slot-number" required />
-                    <button type="submit">Reserve</button>
-                </form>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2024 Smart Parking System</p>
-        </footer>
-        <script src="app.js"></script>
+                <div class="stat-card">
+                    <div class="stat-value" id="occupiedCount">0</div>
+                    <div class="stat-label">Occupied</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCount">0</div>
+                    <div class="stat-label">Total Slots</div>
+                </div>
+            </div>
+        </header>
+    </body>
 </html>
