@@ -8,26 +8,116 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <h1>🚗 Smart Parking System</h1>
-                <p class="subtitle">Real-time parking slot management</p>
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <h1>🚗 Smart Parking System</h1>
+                    <p class="subtitle">Real-time parking slot management</p>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-value" id="availableCount">0</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="occupiedCount">0</div>
+                        <div class="stat-label">Occupied</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCount">0</div>
+                        <div class="stat-label">Total Slots</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Action Panel -->
+                <section class="action-panel">
+                    <div class="panel-header">
+                        <h2>Manage Parking</h2>
+                    </div>
+                    
+                    <div class="action-tabs">
+                        <button class="tab-button active" data-tab="book">Book Slot</button>
+                        <button class="tab-button" data-tab="release">Release Slot</button>
+                    </div>
+
+                    <!-- Book Form -->
+                    <div class="tab-content active" id="book-tab">
+                        <form id="bookForm" class="action-form">
+                            <div class="form-group">
+                                <label for="bookSlotId">Slot ID</label>
+                                <select id="bookSlotId" required>
+                                    <option value="">Select a slot</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleId">Vehicle ID</label>
+                                <input type="text" id="vehicleId" placeholder="e.g., MH-01-AB-1234" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-icon">🅿️</span>
+                                Book Slot
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Release Form -->
+                    <div class="tab-content" id="release-tab">
+                        <form id="releaseForm" class="action-form">
+                            <div class="form-group">
+                                <label for="releaseSlotId">Slot ID</label>
+                                <select id="releaseSlotId" required>
+                                    <option value="">Select a slot</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-danger">
+                                <span class="btn-icon">🚪</span>
+                                Release Slot
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Parking Grid -->
+                <section class="parking-section">
+                    <div class="section-header">
+                        <h2>Parking Slots</h2>
+                        <button class="btn btn-secondary" id="refreshBtn">
+                            <span class="btn-icon">🔄</span>
+                            Refresh
+                        </button>
+                    </div>
+                    <div class="parking-grid" id="parkingGrid">
+                        <!-- Parking slots will be dynamically loaded here -->
+                    </div>
+                </section>
+
+                <!-- History Section -->
+                <section class="history-section">
+                    <div class="section-header">
+                        <h2>Recent Activity</h2>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <!-- History items will be dynamically loaded here -->
+                    </div>
+                </section>
+            </main>
+
+            <!-- Notification Toast -->
+            <div class="toast" id="toast">
+                <span class="toast-icon" id="toastIcon"></span>
+                <span class="toast-message" id="toastMessage"></span>
             </div>
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-value" id="availableCount">0</div>
-                    <div class="stat-label">Available</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="occupiedCount">0</div>
-                    <div class="stat-label">Occupied</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="totalCount">0</div>
-                    <div class="stat-label">Total Slots</div>
-                </div>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="spinner"></div>
             </div>
-        </header>
+        </div>
+
+        <script src="script.js"></script>
     </body>
 </html>
