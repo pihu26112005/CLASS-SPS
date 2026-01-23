@@ -1,0 +1,5 @@
+Bug ID,Description,Severity,Status,Fix Applied
+BUG_001,"Data Inconsistency: In config.py, Slot A1 and B2 are set to False (Occupied) but have vehicle_id: None. This causes the UI to show ""Occupied"" but ""Vehicle: None"".",High,Fixed,Updated config.py to set all initial slots to True (Available).
+BUG_002,Grid Sorting: Slots appear in random order on the frontend because dictionaries are unordered. Slot B1 might appear before A1.,Medium,Fixed,Added sorting logic in services.py to order slots alphabetically by ID.
+BUG_003,"Time Sync Error: If the server time is slightly ahead of the client time, the ""Just now"" calculation shows negative values or incorrect formatting.",Low,Fixed,Added a check in script.js to handle time differences gracefully.
+REQ-004: Input Validation - The system must validate the Vehicle Identification Number to ensure it complies with standard alphanumeric license plate formats before accepting a booking

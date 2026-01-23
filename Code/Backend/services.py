@@ -1,4 +1,5 @@
 from models import ParkingLot
+import re
 
 class ParkingService:
     def __init__(self):
@@ -17,7 +18,7 @@ class ParkingService:
                 "vehicle_id": data["vehicle_id"],
                 "booked_at": data["booked_at"]
             })
-        
+        formatted_slots.sort(key=lambda x: x['slot_id'])
         return {
             "slots": formatted_slots,
             "available_count": stats["available"],
@@ -68,7 +69,26 @@ class ParkingService:
                 "message": f"Vehicle '{vehicle_id}' is already parked in slot '{existing_slot}'",
                 "status_code": 409
             }
+        # Regex Explanation:
+        # ^ = Start of string
+        # [A-Z]{2} = 2 Letters (e.g., MH)
+        # [ -]? = Optional dash or space
+        # [0-9]{2} = 2 Numbers (e.g., 01)
+        # [ -]? = Optional dash or space
+        # [A-Z]{1,2} = 1 or 2 Letters (e.g., AB)
+        # [ -]? = Optional dash or space
+        # [0-9]{4} = 4 Numbers (e.g., 1234)
+        # $ = End of string
         
+        # Simple generic validator (Alphanumeric + hyphens, 5-15 chars)
+        # Use this one if you want to be flexible for the demo:
+        pattern = r"^[A-Z0-9-]{5,15}$"
+        if not re.match(pattern, vehicle_id):
+            return {
+                "success": False,
+                "message": "Invalid Vehicle ID format. Use Uppercase Alphanumeric (e.g., MH-01-AB-1234)",
+                "status_code": 400
+            }
         # Book the slot
         timestamp = self.parking_lot.book_slot(slot_id, vehicle_id)
         

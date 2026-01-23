@@ -279,17 +279,23 @@ function updateHistoryList(history) {
 }
 
 // Utility Functions
+// Replace the formatDateTime function in script.js with this:
+
 function formatDateTime(isoString) {
     if (!isoString) return '';
     
     const date = new Date(isoString);
     const now = new Date();
+    // Use Math.abs to handle small server time differences
     const diffMs = now - date;
+    
+    // If future date (server clock ahead) or very recent, say Just Now
+    if (diffMs < 0 || diffMs < 60000) return 'Just now';
+
     const diffMins = Math.floor(diffMs / 60000);
     const diffHours = Math.floor(diffMs / 3600000);
     const diffDays = Math.floor(diffMs / 86400000);
 
-    if (diffMins < 1) return 'Just now';
     if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
     if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
     if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;

@@ -9,10 +9,10 @@ class Config:
     
     # Parking Lot Configuration
     INITIAL_PARKING_DATA = {
-        "A1": {"status": False, "vehicle_id": None, "booked_at": None},
+        "A1": {"status": True, "vehicle_id": None, "booked_at": None},
         "A2": {"status": True, "vehicle_id": None, "booked_at": None},
         "B1": {"status": True, "vehicle_id": None, "booked_at": None},
-        "B2": {"status": False, "vehicle_id": None, "booked_at": None},
+        "B2": {"status": True, "vehicle_id": None, "booked_at": None},
         "C1": {"status": True, "vehicle_id": None, "booked_at": None},
         "C2": {"status": True, "vehicle_id": None, "booked_at": None},
     }
