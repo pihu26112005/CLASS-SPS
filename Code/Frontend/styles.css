@@ -575,7 +575,7 @@ body {
     align-items: center;
     gap: 1rem;
     box-shadow: var(--shadow-xl);
-    transform: translateX(400px);
+    transform: translateX(125%);
     transition: transform var(--transition-normal);
     z-index: 1000;
     max-width: 400px;
